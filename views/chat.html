@@ -1,0 +1,143 @@
+<!--
+ © Copyright 2023 libyzxy0, All Rights Reserved.
+ Please put a credits if you copy this code!
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="thumbnail.ico" type="image/x-icon">
+    <title>ChatME (Beta Testing)</title>
+    <meta name="description" content="Helloo, can u test our project?">
+   <!-- Tailwind css -->
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+  
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body class="unselectable">
+  
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <nav>
+        <div class="profile-info">
+            <img src="" alt="Profile">
+            <h1 id="nav-name"></h1>
+        </div>
+        <button id="new-chat">Clear</button>
+        <ion-icon id="menu-btn" name="grid-outline"></ion-icon>
+    </nav>
+  <!-- drawer component -->
+<div id="drawer-navigation" class="fixed top-0 left-0 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800">
+    <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
+    <button id="close-menu" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Close menu</span>
+    </button>
+  <div class="py-4 overflow-y-auto">
+      <ul class="menu-list space-y-2 font-medium">
+                 <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <ion-icon name="apps-outline"></ion-icon>
+               <span class="flex-1 ml-3 whitespace-nowrap">Dashboard</span>
+            </a>
+                 </li>
+        <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <ion-icon name="code-outline"></ion-icon>
+               <span class="flex-1 ml-3 whitespace-nowrap">Developer Dashboard</span>
+            </a>
+        </li>
+         <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+               <span class="flex-1 ml-3 whitespace-nowrap">AI Chat</span>
+               <span class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Beta</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <ion-icon name="people-outline"></ion-icon>
+               <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <ion-icon name="help-circle-outline"></ion-icon>
+               <span class="flex-1 ml-3 whitespace-nowrap">About</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <ion-icon name="settings-outline"></ion-icon>
+               <span class="flex-1 ml-3 whitespace-nowrap">Settings</span>
+            </a>
+         </li>
+         <li>
+            <a href="/logout" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <ion-icon name="log-out-outline"></ion-icon>
+               <span class="flex-1 ml-3 whitespace-nowrap">Logout</span>
+            </a>
+         </li>
+        <div style="visibility: visible;opacity: 1;transition: 0.3s;" id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-blue-50 dark:bg-blue-900" role="alert">
+         <div class="flex items-center mb-3">
+            <span class="bg-orange-100 text-orange-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">Beta</span>
+            <button id="close-cta" type="button" class="ml-auto -mx-1.5 -my-1.5 bg-blue-50 inline-flex justify-center items-center w-6 h-6 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 h-6 w-6 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800">
+               <span class="sr-only">Close</span>
+               <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+               </svg>
+            </button>
+         </div>
+         <p class="mb-3 text-sm text-blue-800 dark:text-blue-400">
+            ChatME ai model is upgreaded, you can now talk to ChatME smoothly!
+         </p>
+         <a class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300" href="/">Let's chat</a>
+                 </div>
+      </ul>
+   </div>
+           </div>
+    <div class="banner">
+        <h1 id="banner-name"></h1>
+        <p>Just type a message to start our conversation!</p>
+        <p>Created by <a href="https://github.com/libyzxy0" style="text-decoration: none; color: #6ae0ff;">libyzxy0</a></p>
+      <p>Comment your feedback on this post <a href="https://www.facebook.com/100081144393297/posts/pfbid034Fu6wLsRwTChHsVHjgAakU1eKnBGi8MtA4152YbtwM6WZabe2kQidYAJue17Kvmql/?app=fbl" style="text-decoration: none; color: #6ae0ff;">See post</a></p>
+    </div>
+    <div class="messages-body" id="messages-body"></div>
+    <div class="message_input_box">
+        <form id="messageForm">
+            <input type="text" placeholder="Type your message." id="message" autocomplete="off" required>
+           <li id="voice"><ion-icon name="mic-outline"></ion-icon></li>
+           <button type="submit"><ion-icon name="paper-plane-outline"></ion-icon></button>
+        </form>
+    </div>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+<script src="./assets/js/script.js"></script>
+  <script>
+    //Sidebar
+
+document.getElementById('drawer-navigation').style.visibility="hidden";
+document.getElementById('drawer-navigation').style.opacity="0";
+document.getElementById('drawer-navigation').style.transition="0.4s";
+document.getElementById('menu-btn').addEventListener('click', () => {
+document.getElementById('drawer-navigation').style.zIndex="8";
+document.getElementById('drawer-navigation').style.visibility="visible";
+document.getElementById('drawer-navigation').style.opacity="1";
+
+})
+document.getElementById('close-menu').addEventListener('click', () => {
+document.getElementById('drawer-navigation').style.visibility="hidden";
+document.getElementById('drawer-navigation').style.opacity="0";
+
+})
+    document.getElementById('close-cta').addEventListener('click', () => {
+      document.getElementById('dropdown-cta').style.visibility="hidden";
+      document.getElementById('dropdown-cta').style.opacity="0";
+    })
+  </script>
+</body>
+</html>
