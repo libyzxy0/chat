@@ -6,8 +6,14 @@ const port = process.env.PORT || 3000;
 const notFound = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const connectDB = require('./database/connect');
+/*
 const db = require('./database/firebase');
 db.readData('threads').then(res => console.log(res));
+*/
+/*
+const db = require('./database/db');
+db.getUsers(array => console.log(array))
+*/
 
 app.use(express.urlencoded({ extended: true }));
 app.engine('html', require('ejs').renderFile);

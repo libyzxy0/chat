@@ -9,11 +9,13 @@ router.use(session({
 const {
   loginPage, 
   signupPage, 
-  chat
+  chat, 
+  dashboardPage
 } = require("../controllers/pages.js");
-router.get('/', chat);
+router.get('/chat', chat);
 router.get('/login', loginPage);
 router.get('/signup', signupPage);
+router.get('/', dashboardPage);
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');

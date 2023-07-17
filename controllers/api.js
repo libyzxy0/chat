@@ -1,7 +1,7 @@
 const asyncWrapper = require('../middleware/async');
 const { runChatbot } = require("../function/chatbot-data-flow");
 const db = require('../database/firebase');
-
+const axios = require('axios');
 const userInfo = asyncWrapper(async (req, res) => {
   if (req.session.userInfo) {
     res.send(req.session.userInfo);
@@ -9,10 +9,27 @@ const userInfo = asyncWrapper(async (req, res) => {
     res.status(500).send({ message: "Please authenticate to get userinfo " })
   }
 })
+
+const userLocation = asyncWrapper(async (req, res) => {
+  if (req.session.userInfo) {
+    let { latitude, longitude } = req.body;
+    if(!latitude &&! longitude) {
+      req.session.userLocation = null;
+      res.send("Bad")
+    } else {
+      const { data } = await axios.get(`https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`)
+    req.session.userLocation = data;
+    res.send('Oks')
+    }
+  } else {
+    res.status(500).send({ message: "Please authenticate" })
+  }
+})
+
 const chat = asyncWrapper(async (req, res) => {
   const { message } = req.body;
   if(req.session.userInfo) {
-    runChatbot(message, req.session.userInfo, (data) => res.send(data))
+    runChatbot(message, req.session.userInfo, req.session.userLocation, (data) => res.send(data))
   } else {
     res.status(500).send({ message: "Please authenticate." })
   }
@@ -51,7 +68,7 @@ const clearThread = asyncWrapper(async (req, res) => {
         userThreadDataID.push(data[i].fid);
       } 
     }
-    res.redirect('/');
+    res.redirect('/chat');
     for(let i = 0;i < userThreadDataID.length;i++) {
       db.removeData(`threads/${userThreadDataID[i]}`).then(res => {
         //console.log(res)
@@ -62,4 +79,4 @@ const clearThread = asyncWrapper(async (req, res) => {
   }
 })
 
-module.exports = { userInfo, chat, pushThread, getThreadData, clearThread };
+module.exports = { userInfo, chat, pushThread, getThreadData, clearThread, userLocation };

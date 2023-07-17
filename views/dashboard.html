@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <title>ChatME AI (Beta Testing)</title>
+    <title>ChatME | Dashboard</title>
     <meta name="description" content="Helloo, can u test our project?">
    <link rel="manifest" href="manifest.json">
    <!-- Tailwind css -->
@@ -28,6 +28,7 @@
             <img src="favicon.ico" alt="Profile">
             <h1 id="nav-name"></h1>
         </div>
+        <button id="new-chat">Clear</button>
         <ion-icon id="menu-btn" name="grid-outline"></ion-icon>
     </nav>
   <!-- drawer component -->
@@ -39,7 +40,7 @@
     </button>
   <div class="py-4 overflow-y-auto">
       <ul class="menu-list space-y-2 font-medium">
-                 <li>
+                 <li class="activetab">
             <a href="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
               <ion-icon name="apps-outline"></ion-icon>
                <span class="flex-1 ml-3 whitespace-nowrap">Dashboard</span>
@@ -51,7 +52,7 @@
                <span class="flex-1 ml-3 whitespace-nowrap">Developer Dashboard</span>
             </a>
         </li>
-         <li class="activetab">
+         <li>
             <a href="/chat" class="flex items-center p-2 text-gray-900 group">
               <ion-icon name="chatbubble-outline"></ion-icon>
                <span class="flex-1 ml-3 whitespace-nowrap">AI Chat</span>
@@ -59,13 +60,13 @@
             </a>
          </li>
          <li>
-            <a href="/users" class="flex items-center p-2 group">
+            <a href="#" class="flex items-center p-2 group">
                <ion-icon name="people-outline"></ion-icon>
                <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
             </a>
          </li>
          <li>
-            <a href="/about" class="flex items-center p-2 group">
+            <a href="#" class="flex items-center p-2 group">
               <ion-icon name="help-circle-outline"></ion-icon>
                <span class="flex-1 ml-3 whitespace-nowrap">About</span>
             </a>
@@ -76,12 +77,6 @@
                <span class="flex-1 ml-3 whitespace-nowrap">Settings</span>
             </a>
          </li>
-        <li>
-            <a id="new-chat" class="flex items-center p-2 group">
-              <ion-icon name="trash-outline"></ion-icon>
-               <span class="flex-1 ml-3 whitespace-nowrap">Clear Conversation</span>
-            </a>
-        </li>
          <li>
             <a href="/logout" class="flex items-center p-2 group">
               <ion-icon name="log-out-outline"></ion-icon>
@@ -108,21 +103,12 @@
            </div>
     <div class="banner">
         <h1 id="banner-name"></h1>
-        <p>Just type a message to start our conversation!</p>
-        <p>Created by <a href="https://github.com/libyzxy0" style="text-decoration: none; color: #6ae0ff;">libyzxy0</a></p>
-      <p>Comment your feedback on this post <a href="https://www.facebook.com/100081144393297/posts/pfbid034Fu6wLsRwTChHsVHjgAakU1eKnBGi8MtA4152YbtwM6WZabe2kQidYAJue17Kvmql/?app=fbl" style="text-decoration: none; color: #6ae0ff;">See post</a></p>
-    </div>
-    <div class="messages-body" id="messages-body"></div>
-    <div class="message_input_box">
-        <form id="messageForm">
-            <input type="text" placeholder="Type your message." id="message" autocomplete="off" required>
-           <li id="voice"><ion-icon name="mic-outline"></ion-icon></li>
-           <button type="submit"><ion-icon name="paper-plane-outline"></ion-icon></button>
-        </form>
+        <p>Our team is currently designing this page.</p>
+      <p>Dashboard unfinished <a href="/chat" style="text-decoration: none; color: #6ae0ff;">Go to Chat AI</a></p>
     </div>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
 <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-<script src="./assets/js/script.js"></script>
+
   <script>
     //Sidebar
 
@@ -144,6 +130,14 @@ document.getElementById('drawer-navigation').style.opacity="0";
       document.getElementById('dropdown-cta').style.visibility="hidden";
       document.getElementById('dropdown-cta').style.opacity="0";
     })
+    window.addEventListener('load', function() {
+  //loader(0)
+      setTimeout(() => {
+            var preloader = document.querySelector(".preloader");
+            preloader.style.visibility = "hidden";
+            preloader.style.opacity = "0";
+       })
+});
   </script>
 </body>
 </html>

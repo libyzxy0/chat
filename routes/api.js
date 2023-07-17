@@ -13,13 +13,15 @@ const {
   chat, 
   pushThread, 
   getThreadData, 
-  clearThread
+  clearThread, 
+  userLocation
 } = require("../controllers/api.js");
 
 router.post('/user-info', userInfo);
 router.post('/chat', chat);
 router.post('/push-thread', pushThread)
 router.post('/get-thread-data', getThreadData)
+router.post('/userlocation', userLocation)
 router.get('/clear', clearThread);
 
 module.exports = router;

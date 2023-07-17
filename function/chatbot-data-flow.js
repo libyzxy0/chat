@@ -1,5 +1,5 @@
 const ai = require('./ai');
-function runChatbot(input, userInfo, callback) {
+function runChatbot(input, userInfo, userLocation, callback) {
   console.log(input + " | " + userInfo.firstName + " " + userInfo.lastName)
   if (input.startsWith('/')) {
     let api = {
@@ -11,9 +11,14 @@ function runChatbot(input, userInfo, callback) {
             type: "image", 
             url: body.attachment.url
           }})
-        } else if(type == "video") {
+        } else if (type == "video") {
           callback({ body: "", attachments: {
             type: "video", 
+            url: body.attachment.url
+          }})
+        } else if(type == "audio") {
+          callback({ body: "", attachments: {
+            type: "audio", 
             url: body.attachment.url
           }})
         }
@@ -30,7 +35,7 @@ function runChatbot(input, userInfo, callback) {
       }
     }
   } else {
-    ai({ text: input, userInfo }, (text) => {
+    ai({ text: input, userInfo, userLocation }, (text) => {
       callback({ body: text, attachments: { type: "msg" } })
     })
   }
