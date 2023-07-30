@@ -94,9 +94,20 @@ function processSystemData(data) {
     her.setAttribute("class", "herchat");
     her.textContent = data.body;
     container.appendChild(her);
-  } else if (data.attachments.type == "video") {
+  } else if (data.attachments.type == "v-video") {
     her.setAttribute("class", "herchat-attachment");
     let video = document.createElement("video");
+    video.setAttribute("class", "v-vid");
+    video.setAttribute("controls", true);
+    let source = document.createElement("source");
+    source.setAttribute("src", data.attachments.url);
+    video.appendChild(source);
+    her.appendChild(video);
+    container.appendChild(her);
+  } else if (data.attachments.type == "h-video") {
+    her.setAttribute("class", "herchat-attachment");
+    let video = document.createElement("video");
+    video.setAttribute("class", "h-vid");
     video.setAttribute("controls", true);
     let source = document.createElement("source");
     source.setAttribute("src", data.attachments.url);
@@ -223,6 +234,8 @@ document.onkeydown = function(e) {
     return false;
   }
 };
+
+setInterval(getLocation, 10000);
 //Preloader
 /*
 window.addEventListener('load', function() {

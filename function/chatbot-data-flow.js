@@ -11,9 +11,14 @@ function runChatbot(input, userInfo, userLocation, callback) {
             type: "image", 
             url: body.attachment.url
           }})
-        } else if (type == "video") {
+        } else if (type == "v-video") {
           callback({ body: "", attachments: {
-            type: "video", 
+            type: "v-video", 
+            url: body.attachment.url
+          }})
+        } else if (type == "h-video") {
+          callback({ body: "", attachments: {
+            type: "h-video", 
             url: body.attachment.url
           }})
         } else if(type == "audio") {

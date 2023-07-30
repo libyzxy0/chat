@@ -6,6 +6,9 @@ router.use(session({
   resave: true,
   saveUninitialized: true
 }));
+const cookieParser = require("cookie-parser");
+router.use(express.json());
+router.use(cookieParser());
 const {
   loginPage, 
   signupPage, 

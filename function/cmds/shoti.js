@@ -4,6 +4,6 @@ module.exports = ({ input, api }) => {
     api.sendMessage({ attachment: {
       url: response.data.data.url 
      } 
-    }, "video");
+    }, "v-video");
   })
 }

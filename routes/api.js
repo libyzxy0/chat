@@ -14,7 +14,8 @@ const {
   pushThread, 
   getThreadData, 
   clearThread, 
-  userLocation
+  userLocation, 
+  chatAPI
 } = require("../controllers/api.js");
 
 router.post('/user-info', userInfo);
@@ -22,6 +23,7 @@ router.post('/chat', chat);
 router.post('/push-thread', pushThread)
 router.post('/get-thread-data', getThreadData)
 router.post('/userlocation', userLocation)
+router.post('/v1/chat-api', chatAPI)
 router.get('/clear', clearThread);
 
 module.exports = router;
