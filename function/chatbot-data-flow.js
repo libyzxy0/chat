@@ -7,25 +7,33 @@ function runChatbot(input, userInfo, userLocation, callback) {
         if (type == "text") {
           callback({ body, attachments: { type: "msg" } })
         } else if (type == "image") {
-          callback({ body: "", attachments: {
-            type: "image", 
-            url: body.attachment.url
-          }})
+          callback({
+            body: "", attachments: {
+              type: "image",
+              url: body.attachment.url
+            }
+          })
         } else if (type == "v-video") {
-          callback({ body: "", attachments: {
-            type: "v-video", 
-            url: body.attachment.url
-          }})
+          callback({
+            body: "", attachments: {
+              type: "v-video",
+              url: body.attachment.url
+            }
+          })
         } else if (type == "h-video") {
-          callback({ body: "", attachments: {
-            type: "h-video", 
-            url: body.attachment.url
-          }})
-        } else if(type == "audio") {
-          callback({ body: "", attachments: {
-            type: "audio", 
-            url: body.attachment.url
-          }})
+          callback({
+            body: "", attachments: {
+              type: "h-video",
+              url: body.attachment.url
+            }
+          })
+        } else if (type == "audio") {
+          callback({
+            body: "", attachments: {
+              type: "audio",
+              url: body.attachment.url
+            }
+          })
         }
       }
     }
@@ -37,6 +45,7 @@ function runChatbot(input, userInfo, userLocation, callback) {
         api.sendMessage("Command not found!", "text")
       } else {
         callback({ type: "message", body: `${err}` })
+        console.log(err);
       }
     }
   } else {
