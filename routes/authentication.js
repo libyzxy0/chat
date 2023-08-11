@@ -11,6 +11,7 @@ router.use(session({
 
 router.post('/login', async (req, res) => {
   let array = await db.readData('users');
+  console.log(req.body);
   let { username: un, password: ps } = req.body;
   if (array.find(({ username }) => username === un)) { 
     if(array.find(({ password }) => password === ps)) {

@@ -1,10 +1,16 @@
- const express = require('express');
+const express = require('express');
 const app = express();
 const cors = require('cors');
 const db = require("./database/firebase");
 const port = process.env.PORT || 3000;
 const notFound = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
+
+/*
+db.writeData("threads", {
+  e: "hi"
+})
+*/
 
 app.use(express.urlencoded({ extended: true }));
 app.engine('html', require('ejs').renderFile);
