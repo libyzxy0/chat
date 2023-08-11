@@ -37,5 +37,6 @@ module.exports = async ({ text, userInfo, userLocation }, callback) => {
     callback(completion.data.choices[0].message["content"])
   } catch (err) {
     callback(`Error: ${err}`)
+    console.log(err);
   }
 }
